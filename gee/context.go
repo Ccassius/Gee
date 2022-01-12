@@ -15,6 +15,7 @@ type Context struct {
 	// request info
 	Path string
 	Method string
+	Params map[string]string			// 存放解析后的参数
 	// response info
 	StatusCode int
 }
@@ -75,7 +76,10 @@ func (c *Context) HTML(code int, html string) {
 	c.Writer.Write([]byte(html))
 }
 
-
+func (c *Context) Param(key string) string {
+	value, _ := c.Params[key]
+	return value
+}
 
 
 
